@@ -1,3 +1,5 @@
+// lib/prisma.ts
+// src/lib/prismadb.ts
 import { PrismaClient } from "@prisma/client";
 
 const prismaClientSingleton = () => {
