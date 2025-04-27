@@ -4,7 +4,7 @@ import { DialogContent } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Logo from '@/public/logo.png'
 import { signIn } from "next-auth/react";
-import { GoogleAuthButton } from "./SubmitsButtons";
+import { GoogleAuthButton } from "./SubmitButtons";
 
 export function AuthModal(){
     return (
