@@ -4,6 +4,7 @@ import { DialogContent } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Logo from '@/public/logo.png'
 import { signIn } from "next-auth/react";
+import { GoogleAuthButton } from "./SubmitsButtons";
 
 export function AuthModal(){
     return (
@@ -26,7 +27,7 @@ export function AuthModal(){
                     "user server  "
                     await signIn ("google");
                   }}
-                  className="w-full"><Button className="w-full">Sign in with Google</Button>
+                  className="w-full"><GoogleAuthButton></GoogleAuthButton>
                     </form>  
                     <Button>Sign in with GitHub </Button>
                 </div>
