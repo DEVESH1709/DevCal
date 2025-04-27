@@ -3,7 +3,7 @@ import { Dialog, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
 import { DialogContent } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Logo from '@/public/logo.png'
-
+import { signIn } from "next-auth/react";
 
 export function AuthModal(){
     return (
@@ -21,6 +21,15 @@ export function AuthModal(){
                         </h4>
                     </Image>
                 </DialogHeader>
+                <div className="flex flex-col mt-5 gap-5">
+                  <form  action={async ()=>{
+                    "user server  "
+                    await signIn ("google");
+                  }}
+                  className="w-full"><Button className="w-full">Sign in with Google</Button>
+                    </form>  
+                    <Button>Sign in with GitHub </Button>
+                </div>
             </DialogContent>
         </Dialog>
     )
