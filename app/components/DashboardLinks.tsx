@@ -5,6 +5,8 @@ import { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { LucideProps } from "lucide-react";
 import { usePathname } from 'next/navigation';
 
+import { cn } from '@/lib/utils';
+
 interface iAppProps{
     id:number;
     name:string;
