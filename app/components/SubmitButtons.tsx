@@ -5,6 +5,30 @@ import GoogleLogo from "@/public/google.svg";
 import { Loader2} from "lucide-react";
 import Image from "next/image";
 import GitHubLogo from "@/public/github.svg";
+import { cn } from "@/lib/utils";
+interface IAppProps{
+   text :string;
+   variant?:
+   "default" | "outline" | "link" | "destructive" | "secondary" | "ghost" |null|undefined;
+   className?:string;
+}
+export function SubmitButton  ({text,variant,className}:IAppProps)  {
+   const  {pending}= useFormStatus();
+   return(
+
+      <>
+      {pending?(
+         <Button disabled variant="outline"  className={cn("w-fit",className)} >
+            
+            <Loader2 className="size-4 mr-2 aniumated-spin">Please wait</Loader2>
+             </Button>
+      ):(<Button type="submit" variant={variant} className={cn("w-fit",className)}>{text}</Button>)}
+      
+      </>
+   )
+}
+
+
 export function GoogleAuthButton() {
    const{ pending} =useFormStatus();
    
