@@ -5,9 +5,23 @@ import { Input } from "@/components/ui/input";
 import { useFormState } from "react-dom";
 import { OnboardingAction } from "../actions";
 import { useForm } from "@conform-to/react";
+import { parseWithZod } from "@conform-to/zod";
+import { onboardingSchema } from "../lib/zodSchemas";
 export default function OnboardingRoute(){
     const [lastResult,sction]= useFormState(OnboardingAction,undefined);
-  
+    const [form, fields]=useForm({
+        lastResult  ,
+
+        onValidate({formData}){
+            return parseWithZod(formData, {
+                schema:onboardingSchema,
+            });
+        },
+
+
+        shouldValidate :"onBlur",
+        shouldRevalidate :"onInput",
+    });
     return (
         <div className="h-screen w-screen flex items-center justify-center">
             <Card>
