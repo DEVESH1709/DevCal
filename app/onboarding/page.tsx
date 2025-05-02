@@ -2,9 +2,14 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-export default function(){
+import { useFormState } from "react-dom";
+import { OnboardingAction } from "../actions";
+import { useForm } from "@conform-to/react";
+export default function OnboardingRoute(){
+    const [lastResult,sction]= useFormState(OnboardingAction,undefined);
+  
     return (
-        <div className="min-h-screen w-screen flex items-center justify-center">
+        <div className="h-screen w-screen flex items-center justify-center">
             <Card>
                 <CardHeader>
                     <CardTitle>Welcome to Dev<span className="text-primary">Cal</span></CardTitle>
