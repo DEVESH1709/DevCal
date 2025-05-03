@@ -39,6 +39,7 @@ if(!isUnique){
                })
 
         })
-    )
+    ),
+    fullName:z.string().min(3).max(150),
 })
 }

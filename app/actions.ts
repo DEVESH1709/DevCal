@@ -2,15 +2,24 @@
 import prisma from "./lib/db"
 import { requireUser } from "./lib/hooks"
 import {parseWithZod} from '@conform-to/zod';
-import { onboardingSchema } from "./lib/zodSchemas"
+import { onboardingSchema, onboardingSchemaValidation } from "./lib/zodSchemas"
 export async function  OnboardingAction(prevState:any,formData:FormData){
     const session =await requireUser();
     
-    const submission = parseWithZod(formData, {
+  const submission =await parseWithZod(formData, {
+ schema: onboardingSchemaValidation({
+    async isUserNameUnique(){
+        const existingUsername= await prisma.user.findUnique({
+            where:{
+                userName:formData.get("userName") as string,
+            }
+        })
+       return !existingUsername;
+    }
+ }),
 
-        schema:onboardingSchema,
-    });
-
+ async :true,
+  })
     if(submission.status !== "success"){
         return submission.reply();
     }
