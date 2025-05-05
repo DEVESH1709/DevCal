@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { SubmitButton } from "./SubmitButtons";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useFormState } from "react-dom";
+import { SettingsAction } from "../actions";
 
 interface iAppProps{
     fullName:string;
@@ -14,7 +16,7 @@ interface iAppProps{
 
 export function SettingsForm({email,fullName,profileImage}:iAppProps){
    
-   
+   const [lastResult,action]=useFormState(SettingsAction,undefined)
    
    return (      
    <Card>
