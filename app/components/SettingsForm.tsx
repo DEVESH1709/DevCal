@@ -13,7 +13,11 @@ interface iAppProps{
 }
 
 export function SettingsForm({email,fullName,profileImage}:iAppProps){
-    <Card>
+   
+   
+   
+   return (      
+   <Card>
         <CardHeader>
             <CardTitle></CardTitle>
             <CardDescription></CardDescription>
@@ -33,4 +37,5 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
             <CardFooter><SubmitButton text="Save Changes"></SubmitButton></CardFooter>
         </form>
     </Card>
+   )
 }
