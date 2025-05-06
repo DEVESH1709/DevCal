@@ -7,6 +7,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useFormState } from "react-dom";
 import { SettingsAction } from "../actions";
+import { parseWithZod } from "@conform-to/zod";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { settingsSchema } from "../lib/zodSchemas";
+import { useForm } from "@conform-to/react";
+
 
 interface iAppProps{
     fullName:string;
@@ -17,7 +23,24 @@ interface iAppProps{
 export function SettingsForm({email,fullName,profileImage}:iAppProps){
    
    const [lastResult,action]=useFormState(SettingsAction,undefined)
-   
+   const [currentProfileImage,setCurrentProfileImage] =useState(profileImage);
+
+   const [form,fields]  =useForm({
+    lastResult,
+
+    onValidate9({formData}){
+        return parseWithZod(formData,{
+            schema:settingsSchema,
+          
+        })
+    },
+    shouldValidate: 'onBlur',
+    shouldRevalidate: 'onInput',
+   })
+
+   const handleDeleteImage=()=>{
+    setCurrentProfileImage("");
+   }
    return (      
    <Card>
         <CardHeader>
@@ -25,15 +48,27 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
             <CardDescription></CardDescription>
         </CardHeader>
 
-        <form>
+        <form id={form.id} onSubmit={form.OnSubmit} action={action} noValidate >
             <CardContent className="flex flex-col gap-y-4">
                 <div className="flex flex-col gap-y-2">
                     <Label>Full Name</Label>
-                    <Input defaultValue={fullName} placeholder="Devesh Kesharwani"></Input>
+                    <Input name={fields.fullName.name} key={fields.fullName.key} defaultValue={fullName} placeholder="Devesh Kesharwani"></Input>
+                    <p className="text-red-500 text-sm">{fields.fullName.errors}</p>
                 </div>
                 <div className="flex flex-col gap-y-2">
                     <Label>Email</Label>
                     <Input disabled defaultValue={email} placeholder="dev@kirt.com"></Input>
+                </div>
+
+                <div className="grid gap-y-5">
+                    <Label>Profile Image</Label>
+                    {currentProfileImage ? (
+                       <div className="relative size-16"><img src={currentProfileImage} alt="Profile Image" className="size-16 rounded-lg"></img>
+                       <Button onClick={handleDeleteImage} variant="destructive"  size="icon" type="button" className="absolute -top-3 -right-3"><X className="size-4"></X></Button>
+                       </div> 
+                    ):(
+                        <h1>no image</h1>
+                    )}
                 </div>
             </CardContent>
             <CardFooter><SubmitButton text="Save Changes"></SubmitButton></CardFooter>
