@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { settingsSchema } from "../lib/zodSchemas";
 import { useForm } from "@conform-to/react";
 import { UploadDropzone } from "../lib/uploadthing";
+import { toast } from "sonner";
 
 
 interface iAppProps{
@@ -70,9 +71,11 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
                     ):(
                        <UploadDropzone onClientUploadComplete={(res)=>{
                         setCurrentProfileImage(res[0].url);
+                        toast.success("Profile Image uploaded successfully");
                        }} 
                        onUploadError={(error)=>{
                         console.log("something went wrong",error);
+                        toast.error(error.message);
                        }}
                        endpoint="imageUploader"></UploadDropzone>
                     )}
