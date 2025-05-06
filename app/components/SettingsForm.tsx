@@ -28,7 +28,7 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
    const [form,fields]  =useForm({
     lastResult,
 
-    onValidate9({formData}){
+    onValidate({formData}){
         return parseWithZod(formData,{
             schema:settingsSchema,
           
