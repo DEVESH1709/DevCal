@@ -14,7 +14,7 @@ import { DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@rad
 import { requireUser } from "../lib/hooks"
 import prisma from "../lib/db";
 import { redirect } from "next/navigation"
-
+import { Toaster } from "sonner"
 export async function getData(userId:string){
     const data=  await prisma.user.findUnique({
         where:{
@@ -105,7 +105,7 @@ export default async function DashboardLayout({children}:{children: ReactNode}){
             </div>
             </div>
 
-    
+    <Toaster richColors closeButton></Toaster>
         </>
     )
 }
