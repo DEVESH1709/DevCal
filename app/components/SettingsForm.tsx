@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { settingsSchema } from "../lib/zodSchemas";
 import { useForm } from "@conform-to/react";
+import { UploadDropzone } from "../lib/uploadthing";
 
 
 interface iAppProps{
@@ -67,7 +68,13 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
                        <Button onClick={handleDeleteImage} variant="destructive"  size="icon" type="button" className="absolute -top-3 -right-3"><X className="size-4"></X></Button>
                        </div> 
                     ):(
-                        <h1>no image</h1>
+                       <UploadDropzone onClientUploadComplete={(res)=>{
+                        setCurrentProfileImage(res[0].url);
+                       }} 
+                       onUploadError={(error)=>{
+                        console.log("something went wrong",error);
+                       }}
+                       endpoint="imageUploader"></UploadDropzone>
                     )}
                 </div>
             </CardContent>
