@@ -1,4 +1,4 @@
-import { updateAvailabilityAction } from '@/app/actions';
+
 "use server"
 import prisma from "./lib/db"
 import { requireUser } from "./lib/hooks"
@@ -6,6 +6,7 @@ import {parseWithZod} from '@conform-to/zod';
 import { onboardingSchema, onboardingSchemaValidation } from "./lib/zodSchemas"
 import { redirect } from "next/navigation";
 import { settingsSchema } from "./lib/zodSchemas";
+import { revalidatePath } from "next/cache";
 export async function  OnboardingAction(prevState:any,formData:FormData){
     const session =await requireUser();
     
@@ -121,5 +122,24 @@ export async function updateAvailabilityAction(formData:FormData){
             fromTime:rawData[`fromTime-${id}`] as string,
             tillTime:rawData[`tillTime-${id}`] as string,
         }
-    })
+    });
+
+    try{
+        await prisma.$transaction(
+            availbilityData.map((item)=>prisma.availability.update({
+                where:{
+                    id:item.id,
+                },
+                data:{
+                    isActive:item.isActive,
+                    fromTime:item.fromTime,
+                    tillTime:item.tillTime,
+                }
+            }))
+        );
+        revalidatePath("/dashboard/availability");
+    }
+    catch(error){
+        console.error(error);
+    }
 }
