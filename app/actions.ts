@@ -1,3 +1,4 @@
+import { updateAvailabilityAction } from '@/app/actions';
 "use server"
 import prisma from "./lib/db"
 import { requireUser } from "./lib/hooks"
@@ -104,4 +105,21 @@ export async function SettingsAction(prevState:any,formData:FormData){
      });
      return redirect("/dashboard")
 
+}
+
+export async function updateAvailabilityAction(formData:FormData){
+    const session =await requireUser();
+    
+    const rawData =Object.fromEntries(formData.entries());
+
+    const availbilityData=Object.keys(rawData).filter((key)=>key.startsWith("id-")).map((key)=>{
+        const id= key.replace("id-","");
+
+        return {
+            id,
+            isActive:rawData[`isActive-${id}`] === "on",
+            fromTime:rawData[`fromTime-${id}`] as string,
+            tillTime:rawData[`tillTime-${id}`] as string,
+        }
+    })
 }
