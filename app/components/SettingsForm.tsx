@@ -14,7 +14,7 @@ import { settingsSchema } from "../lib/zodSchemas";
 import { useForm } from "@conform-to/react";
 import { UploadDropzone } from "../lib/uploadthing";
 import { toast } from "sonner";
-
+import { X } from "lucide-react";
 
 interface iAppProps{
     fullName:string;
@@ -22,7 +22,7 @@ interface iAppProps{
     profileImage:string;
 }
 
-export function SettingsForm({email,fullName,profileImage}:iAppProps){
+export function SettingsForm({fullName,email,profileImage}:iAppProps){
    
    const [lastResult,action]=useFormState(SettingsAction,undefined)
    const [currentProfileImage,setCurrentProfileImage] =useState(profileImage);
