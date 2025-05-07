@@ -21,6 +21,7 @@ import { Switch } from "@/components/ui/switch";
 import { notFound } from "next/navigation";
 import React from "react";
 import { requireUser } from "@/app/lib/hooks";
+import { updateAvailabilityAction } from "@/app/actions";
 
 
 async function getData(userId: string) {
@@ -49,7 +50,7 @@ const AvailabilityPage = async () => {
           In this section you can manage your availability.
         </CardDescription>
       </CardHeader>
-      <form >
+      <form  action={updateAvailabilityAction}>
         <CardContent className="flex flex-col gap-y-4">
           {data.map((item) => (
             <div
