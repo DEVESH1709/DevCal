@@ -50,7 +50,7 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
             <CardDescription></CardDescription>
         </CardHeader>
 
-        <form id={form.id} onSubmit={form.OnSubmit} action={action} noValidate >
+        <form id={form.id} onSubmit={form.onSubmit} action={action} noValidate >
             <CardContent className="flex flex-col gap-y-4">
                 <div className="flex flex-col gap-y-2">
                     <Label>Full Name</Label>
