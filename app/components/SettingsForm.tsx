@@ -64,6 +64,8 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
 
                 <div className="grid gap-y-5">
                     <Label>Profile Image</Label>
+
+                    <input type="hidden" name={fields.profileImage.name} key={fields.profileImage.key} value={currentProfileImage}></input>
                     {currentProfileImage ? (
                        <div className="relative size-16"><img src={currentProfileImage} alt="Profile Image" className="size-16 rounded-lg"></img>
                        <Button onClick={handleDeleteImage} variant="destructive"  size="icon" type="button" className="absolute -top-3 -right-3"><X className="size-4"></X></Button>
@@ -79,6 +81,7 @@ export function SettingsForm({email,fullName,profileImage}:iAppProps){
                        }}
                        endpoint="imageUploader"></UploadDropzone>
                     )}
+                    <p className="text-red-500 text-sm">{fields.profileImage.errors}</p>
                 </div>
             </CardContent>
             <CardFooter><SubmitButton text="Save Changes"></SubmitButton></CardFooter>
