@@ -1,13 +1,46 @@
-import { auth } from "../lib/auth";
-import { redirect } from "next/navigation";
-import { requireUser } from "../lib/hooks";
 
-export default async function Dashboard() {
+import { requireUser } from "../lib/hooks";
+import prisma from "../lib/db";
+
+import { notFound } from "next/navigation";
+
+
+
+async function getData(userId: string) {
+    const data =await prisma.user.findUnique({
+        where:{
+            id: userId,
+        },
+        select:{
+            userName:true,
+            eventType:{
+                select:{
+                    id:true,
+                    active:true,
+                    title:true,
+                    url:true,
+                    duration:true,
+
+                }
+            }
+        
+        },
+    });
+    if(!data){
+        return notFound();
+    }
+return data;
+}
+export default async function DashboardPage() {
  const session= await requireUser();
- 
+ const data=await getData(session.user?.id as string);
     return (
         <>
-        <h1>devesh</h1>
+       {data.eventType.length===0 ?(
+        <p>no data</p>
+       ):(
+        <p>hey we have event types</p>
+       )}
         </>
     );
 }
