@@ -3,6 +3,7 @@ import { requireUser } from "../lib/hooks";
 import prisma from "../lib/db";
 
 import { notFound } from "next/navigation";
+import { EmptyState } from "../components/EmptyState";
 
 
 
@@ -37,7 +38,7 @@ export default async function DashboardPage() {
     return (
         <>
        {data.eventType.length===0 ?(
-        <p>no data</p>
+       <EmptyState></EmptyState>
        ):(
         <p>hey we have event types</p>
        )}
