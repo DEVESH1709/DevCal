@@ -1,6 +1,6 @@
 import { Ban } from "lucide-react";
 import Link from "next/link";
-import { Button} from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 interface iAppProps {
     title :string;
@@ -19,7 +19,7 @@ export function EmptyState({buttonText, description , href, title} :iAppProps) {
 
 
 <Button asChild>
-    <Link href>
+    <Link href={href}>
    { buttonText}</Link>
 </Button>
         </div>
