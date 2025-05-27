@@ -14,13 +14,14 @@ import { useState } from "react";
 import { SubmitButton } from "@/app/components/SubmitButtons";
 import Link from "next/link";
 
-
+import { useFormState } from "react-dom";
 
 type VideoCallProvider = "Zoom Meeting" | "Google Meet" | "Microsoft Teams";
 
 
 export default function NewEventRoute(){
     const [activePlatform,setActivePlatform] =useState<VideoCallProvider>("Google Meet");
+    const [lastResult,action]=useFormState(CreateEventTypeAction,undefined)
     return (
         <div className="w-full h-full flex flex-1 itens-center justify-center">
             <Card>
