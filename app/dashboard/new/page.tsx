@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SelectGroup } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { SelectContent, SelectItem } from "@radix-ui/react-select";
+import { SelectContent, SelectItem, SelectLabel } from "@/components/ui/select";
+import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
 
@@ -46,9 +47,16 @@ export default function NewEventRoute(){
                                <SelectGroup>
                                 <SelectLabel>Duration</SelectLabel>
                                 <SelectItem value="15">15 Mins</SelectItem>
+                                <SelectItem value="30">30 Mins</SelectItem>
+                                <SelectItem value="45">45 Mins</SelectItem>
+                                <SelectItem value="60">1 Mins</SelectItem>
                                </SelectGroup>
                             </SelectContent>
                         </Select>
+                    </div>
+                    <div className="grid gap-y-2">
+                        <Label>Video Call Provider</Label>
+
                     </div>
                     </CardContent>
                 </form>
