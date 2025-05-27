@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardDescription, CardHeader,CardContent , CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader,CardContent , CardTitle,CardFooter } from "@/components/ui/card"
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,9 @@ import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/ButtonGroup";
 import { useState } from "react";
+import { SubmitButton } from "@/app/components/SubmitButtons";
+import Link from "next/link";
+
 
 
 type VideoCallProvider = "Zoom Meeting" | "Google Meet" | "Microsoft Teams";
@@ -65,13 +68,20 @@ export default function NewEventRoute(){
                     <div className="grid gap-y-2">
                         <Label>Video Call Provider</Label>
                         <ButtonGroup  >
-                            <Button onClick={ ()=>setActivePlatform("Zoom Meeting")} className="w-full" variant={activePlatform==="Zoom Meeting"? "secondary":"outline"}>Zoom</Button>
-                             <Button  onClick={ ()=>setActivePlatform("Google Meet")} className="w-full" variant={activePlatform==="Google Meet"? "secondary":"outline"}>Google Meet</Button>
+                            <Button type="button" onClick={ ()=>setActivePlatform("Zoom Meeting")} className="w-full" variant={activePlatform==="Zoom Meeting"? "secondary":"outline"}>Zoom</Button>
+                             <Button  type="button"  onClick={ ()=>setActivePlatform("Google Meet")} className="w-full" variant={activePlatform==="Google Meet"? "secondary":"outline"}>Google Meet</Button>
 
-                              <Button onClick={ ()=>setActivePlatform("Microsoft Teams")}className="w-full" variant={activePlatform==="Microsoft Teams"? "secondary":"outline"}>Microsoft Teams</Button>
+                              <Button type="button"  onClick={ ()=>setActivePlatform("Microsoft Teams")}className="w-full" variant={activePlatform==="Microsoft Teams"? "secondary":"outline"}>Microsoft Teams</Button>
                         </ButtonGroup>
                     </div>
                     </CardContent>
+
+                    <CardFooter className="w-full flex justify-between">
+                        <Button variant="secondary" asChild>
+                            <Link href="/dashboard"></Link>
+                        </Button>
+                        <SubmitButton text="Create event type"></SubmitButton>
+                    </CardFooter>
                 </form>
             </Card>
         </div>
