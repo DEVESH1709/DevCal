@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardDescription, CardHeader,CardContent , CardTitle } from "@/components/ui/card"
 
 import { Input } from "@/components/ui/input";
@@ -6,10 +8,16 @@ import { SelectGroup } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { SelectContent, SelectItem, SelectLabel } from "@/components/ui/select";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/ButtonGroup";
+import { useState } from "react";
 
+
+type VideoCallProvider = "Zoom Meeting" | "Google Meet" | "Microsoft Teams";
 
 
 export default function NewEventRoute(){
+    const [activePlatform,setActivePlatform] =useState<VideoCallProvider>("Google Meet");
     return (
         <div className="w-full h-full flex flex-1 itens-center justify-center">
             <Card>
@@ -56,7 +64,12 @@ export default function NewEventRoute(){
                     </div>
                     <div className="grid gap-y-2">
                         <Label>Video Call Provider</Label>
+                        <ButtonGroup  >
+                            <Button onClick={ ()=>setActivePlatform("Zoom Meeting")} className="w-full" variant={activePlatform==="Zoom Meeting"? "secondary":"outline"}>Zoom</Button>
+                             <Button  onClick={ ()=>setActivePlatform("Google Meet")} className="w-full" variant={activePlatform==="Google Meet"? "secondary":"outline"}>Google Meet</Button>
 
+                              <Button onClick={ ()=>setActivePlatform("Microsoft Teams")}className="w-full" variant={activePlatform==="Microsoft Teams"? "secondary":"outline"}>Microsoft Teams</Button>
+                        </ButtonGroup>
                     </div>
                     </CardContent>
                 </form>
