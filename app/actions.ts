@@ -3,13 +3,15 @@
 import prisma from "./lib/db"
 
 import {parseWithZod} from '@conform-to/zod';
-import { onboardingSchema, onboardingSchemaValidation } from "./lib/zodSchemas"
+import {  onboardingSchemaValidation } from "./lib/zodSchemas"
 import { redirect } from "next/navigation";
+
 import { settingsSchema } from "./lib/zodSchemas";
 import { requireUser } from "./lib/hooks";
 
 import { eventTypeSchema } from "./lib/zodSchemas";
 import { revalidatePath } from "next/cache";
+
 export async function  OnboardingAction(prevState:any,formData:FormData){
     const session =await requireUser();
     
@@ -150,7 +152,7 @@ export async function updateAvailabilityAction(formData:FormData){
 export async function CreateEventTypeAction(prevState:any, formData:FormData){
     const session =await requireUser();
 
-    const submission= parseWithZod(FormData,{
+    const submission= parseWithZod(formData,{
         schema: eventTypeSchema,
     });
 
@@ -163,7 +165,7 @@ export async function CreateEventTypeAction(prevState:any, formData:FormData){
             duration:submission.value.duration,
             url:submission.value.url,
             description:submission.value.description,
-            videoCallSoftware:submission.value.videoCallSoftware,
+            videoCallSoftware:submission.value. vdeoCallSoftware,
             userId :session.user?.id,
 
         }
