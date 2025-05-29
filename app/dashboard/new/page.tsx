@@ -88,14 +88,14 @@ export default function NewEventRoute(){
                     </div>
                     <div className="grid gap-y-2">
                         <Label>Video Call Provider</Label>
-                        <input type="hidden" name={fields.videoCallSoftware.name} value={activePlatform}></input>
+                        <input type="hidden" name={fields. vdeoCallSoftware.name} value={activePlatform}></input>
                         <ButtonGroup  >
                             <Button type="button" onClick={ ()=>setActivePlatform("Zoom Meeting")} className="w-full" variant={activePlatform==="Zoom Meeting"? "secondary":"outline"}>Zoom</Button>
                              <Button  type="button"  onClick={ ()=>setActivePlatform("Google Meet")} className="w-full" variant={activePlatform==="Google Meet"? "secondary":"outline"}>Google Meet</Button>
 
                               <Button type="button"  onClick={ ()=>setActivePlatform("Microsoft Teams")}className="w-full" variant={activePlatform==="Microsoft Teams"? "secondary":"outline"}>Microsoft Teams</Button>
                         </ButtonGroup>
-                         <p className="text-red-500 text-sm">{fields.VideoCallProvider.errors}</p>
+                         <p className="text-red-500 text-sm">{fields. vdeoCallSoftware.errors}</p>
                     </div>
                     </CardContent>
 
