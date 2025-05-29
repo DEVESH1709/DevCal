@@ -16,8 +16,6 @@ import Link from "next/link";
 import { CreateEventTypeAction } from "@/app/actions";
 import { eventTypeSchema } from "@/app/lib/zodSchemas";
 import { useForm } from "@conform-to/react";
-
-
 import { useFormState } from "react-dom";
 import { parseWithZod } from "@conform-to/zod";
 

@@ -1,4 +1,5 @@
 import { conformZodMessage } from '@conform-to/zod';
+import { Description } from '@radix-ui/react-dialog';
 
 import { z } from 'zod';
 
@@ -55,5 +56,6 @@ export const eventTypeSchema = z.object({
     title: z.string().min(3).max(150),
     duration :z.number().min(15).max(60),
     url:z.string().min(3).max(300),
+    description:z.string().min(3).max(500),
     vdeoCallSoftware:z.string().min(3),
 })
