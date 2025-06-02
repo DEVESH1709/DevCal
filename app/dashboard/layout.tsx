@@ -51,8 +51,8 @@ export default async function DashboardLayout({children}:{children: ReactNode}){
                     </Link>
                 </div>
 
-                <div className="flex-1 ">
-                    <nav className="grid items-start px-2 lg:px-4">
+                <div className="flex-1">
+                    <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                         <DashboardLinks></DashboardLinks>
                     </nav>
                 </div>
@@ -78,10 +78,12 @@ export default async function DashboardLayout({children}:{children: ReactNode}){
                   <ThemeToggle></ThemeToggle>
 
                   <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
                     <Button  variant="secondary" size="icon" className="rounded-full">
                         <img src={session?.user?.image as string} alt="Profile Image" width={20} height={20} className="w-full h-full rounded-full"></img>
                     </Button>
-                    <DropdownMenuTrigger>
+                    </DropdownMenuTrigger>
+                  
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>My Content</DropdownMenuLabel>
                             <DropdownMenuSeparator></DropdownMenuSeparator>
@@ -94,7 +96,7 @@ export default async function DashboardLayout({children}:{children: ReactNode}){
                             
                             >  <button className="w-full text-left">Log Out</button></form></DropdownMenuItem>
                         </DropdownMenuContent>
-                    </DropdownMenuTrigger>
+                   
                   </DropdownMenu>
                 </div>
                 
