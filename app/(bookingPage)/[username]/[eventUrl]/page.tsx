@@ -1,5 +1,6 @@
 import prisma from "@/app/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { CalendarX2, Clock, VideoIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -75,7 +76,7 @@ export default async function BookingFormRoute({params}:{params:{username:string
                    
                     </div>
 
-                    
+                    <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
                 </CardContent>
             </Card>
         </div>
