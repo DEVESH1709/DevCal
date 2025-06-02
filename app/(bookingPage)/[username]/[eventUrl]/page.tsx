@@ -1,6 +1,6 @@
 import prisma from "@/app/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
-import { CalendarX2 } from "lucide-react";
+import { CalendarX2, Clock, VideoIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 
 
@@ -56,11 +56,26 @@ export default async function BookingFormRoute({params}:{params:{username:string
                     <h1 className="text-xl font-semibold mt-2">{data.title}</h1>
                     <p className="text-sm font-medium text-muted-foreground">{data.description}</p>
                    <div className="mt-5 flex flex-col gap-y-3">
-                    <p><CalendarX2 className="size-4 mr-2 text-primary"></CalendarX2></p>
+                    <p className="flex items-center"><CalendarX2 className="size-4 mr-2 text-primary"></CalendarX2>
+                    <span className="text-sm font-medium text-muted-foreground">23. Sept 2024</span>
+                    
+                    </p>
+                   <p className="flex items-center"><Clock className="size-4 mr-2 text-primary"></Clock>
+                    <span className="text-sm font-medium text-muted-foreground">{data.duration} Minutes</span>
+                    
+                    </p>
+ <p className="flex items-center"><VideoIcon className="size-4 mr-2 text-primary"></VideoIcon>
+                    <span className="text-sm font-medium text-muted-foreground">{data.videoCallSoftware}</span>
+                    
+                    </p>
+
+
                    </div>
                    
                    
                     </div>
+
+                    
                 </CardContent>
             </Card>
         </div>
