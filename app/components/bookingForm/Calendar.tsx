@@ -1,8 +1,11 @@
+"use client"
+
 import {useCalendar, useLocale} from "react-aria";
 import {useCalendarState} from 'react-stately';
 import {createCalendar} from '@internationalized/date';
 import {CalendarProps,DateValue} from "@react-types/calendar"
 import { CalendarHeader } from "./CalendarHeader";
+import { use } from "react";
 export function Calendar(props:CalendarProps<DateValue>){
     const {locale} =useLocale();
   let state = useCalendarState({
