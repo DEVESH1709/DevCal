@@ -20,6 +20,8 @@ export function Calendar(props:CalendarProps<DateValue>){
         
         <div {...calendarProps} className="inline-block">
             <CalendarHeader state={state} calendarProps={calendarProps} prevButtonProps={prevButtonProps} nextButtonProps={nextButtonProps}></CalendarHeader>
+
+            <div className="flex gap-8"></div>
         </div>
     )
 }
