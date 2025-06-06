@@ -4,6 +4,8 @@ import {FocusableElement,DOMAttributes} from "@react-types/shared"
 import { type AriaButtonProps} from "@react-aria/button";
 import { useDateFormatter } from "@react-aria/i18n";
 import { VisuallyHidden} from "@react-aria/visually-hidden";
+import { CalendarButton } from "./CalendarButton";
+import { ChevronLeft } from "lucide-react";
 
 export function CalendarHeader({state,calendarProps,prevButtonProps,nextButtonProps,}:{
     state: CalendarState;
@@ -31,7 +33,14 @@ export function CalendarHeader({state,calendarProps,prevButtonProps,nextButtonPr
                 {monthName} <span className="text-muted-foreground text-sm font-medium">{year}</span>
              </h2>
 
-             <div className="flex items-center gap-2"></div>
+             <div className="flex items-center gap-2">
+                <CalendarButton {...prevButtonProps}>
+                    <ChevronLeft className="size-4"></ChevronLeft>
+                </CalendarButton>
+                <CalendarButton {...nextButtonProps}>
+                    <ChevronLeft className="size-4"></ChevronLeft>
+                </CalendarButton>
+             </div>
         </div>
     )
 }
