@@ -29,7 +29,7 @@ export function CalendarCell({
             ref={ref}
             className="size-10 outline-none group rounded-md"
             >
-                <div className={cn("size-full rounded-sm flex items-center justify-center text-center text-sm font-semibold")}>
+                <div className={cn("size-full rounded-sm flex items-center justify-center text-center text-sm font-semibold", isSelected? 'bg-primary text-white' :"")}>
               {formattedDate}
                 </div>
             </div>
