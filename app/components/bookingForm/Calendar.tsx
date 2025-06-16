@@ -6,6 +6,7 @@ import {createCalendar} from '@internationalized/date';
 import {CalendarProps,DateValue} from "@react-types/calendar"
 import { CalendarHeader } from "./CalendarHeader";
 import { use } from "react";
+import { CalendarGrid } from "./CalendarGrid";
 export function Calendar(props:CalendarProps<DateValue>){
     const {locale} =useLocale();
   let state = useCalendarState({
@@ -21,7 +22,9 @@ export function Calendar(props:CalendarProps<DateValue>){
         <div {...calendarProps} className="inline-block">
             <CalendarHeader state={state} calendarProps={calendarProps} prevButtonProps={prevButtonProps} nextButtonProps={nextButtonProps}></CalendarHeader>
 
-            <div className="flex gap-8"></div>
+            <div className="flex gap-8">
+              <CalendarGrid state={state}></CalendarGrid>
+            </div>
         </div>
     )
 }

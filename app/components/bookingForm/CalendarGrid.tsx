@@ -33,7 +33,7 @@ return (
             .getDatesInWeek(weekIndex)
             .map((date,i)=>
             date ? (
-                <CalendarCell key={i} state={state} date={date}></CalendarCell>
+                <CalendarCell currentMonth={startDate} key={i} state={state} date={date}></CalendarCell>
             ):(
                 <id key={i}></id>
             )

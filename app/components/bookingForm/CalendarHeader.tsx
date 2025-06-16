@@ -28,7 +28,7 @@ export function CalendarHeader({state,calendarProps,prevButtonProps,nextButtonPr
              <VisuallyHidden>
                 <h2>{calendarProps["aria-label"]}</h2>
              </VisuallyHidden>
-             <h2 className=" font-semibold">
+             <h2 className=" font-semibold fkex-1 ">
 
                 {monthName} <span className="text-muted-foreground text-sm font-medium">{year}</span>
              </h2>
