@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CalendarX2, Clock, VideoIcon } from "lucide-react";
 import { notFound } from "next/navigation";
-
+import { RenderCalendar } from "@/app/components/bookingForm/RenderCalendar";
 
 
 async function getData(eventUrl :string,userName:string){
@@ -78,7 +78,7 @@ export default async function BookingFormRoute({params}:{params:{username:string
                     </div>
 
                     <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
-                    <Calendar></Calendar>
+                    <RenderCalendar></RenderCalendar>
                 </CardContent>
             </Card>
         </div>
