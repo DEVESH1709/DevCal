@@ -25,7 +25,7 @@ export function Calendar(props:CalendarProps<DateValue> & {
             <CalendarHeader state={state} calendarProps={calendarProps} prevButtonProps={prevButtonProps} nextButtonProps={nextButtonProps}></CalendarHeader>
 
             <div className="flex gap-8">
-              <CalendarGrid state={state}></CalendarGrid>
+              <CalendarGrid state={state} isDateUnavailable={props.isDateUnavailable}></CalendarGrid>
             </div>
         </div>
     )
