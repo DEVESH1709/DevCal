@@ -10,6 +10,7 @@ interface iAppProps {
         isActive:boolean;
     }[];
 }
-export function RenderCalendar({availability}:iAppProps){
+export function RenderCalendar({availability}:iAppProps){4
+    
     return <Calendar minValue={today(getLocalTimeZone())}></Calendar>
 }
