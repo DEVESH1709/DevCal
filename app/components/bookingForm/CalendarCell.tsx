@@ -1,25 +1,25 @@
 import {useRef} from "react";
 import {useCalendarCell, useFocusRing, mergeProps} from "react-aria";
 import {CalendarState} from "react-stately";
-import {CalendarDate,isToday,getlocalTimeZone} from "@internationalize/date"
+import {CalendarDate,isToday,getLocalTimeZone,isSameMonth} from "@internationalized/date"
 import { cn } from "@/lib/utils";
 export function CalendarCell({
     state,
     date,
-    currentMonth
+    currentMonth,
+    isUnavailable,
 }:{
     state:CalendarState;
    date:CalendarDate;
    currentMonth: CalendarDate;
+   isUnavailable?:boolean
 }){
     let ref =useRef(null);
     let {
         cellProps,
         buttonProps,
         isSelected,
-        isOutsideViisibleRange,
         isDisabled,
-        isUnavailable,
         formattedDate,
     }= useCalendarCell({date}, state,ref);
     const {focusProps, isFocusVisible} = useFocusRing();
