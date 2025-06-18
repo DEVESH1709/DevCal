@@ -24,9 +24,11 @@ export function CalendarCell({
     }= useCalendarCell({date}, state,ref);
     const {focusProps, isFocusVisible} = useFocusRing();
 
-    const isDateToday = isToday(date,getlocalTimeZone());
+    const isDateToday = isToday(date,getLocalTimeZone());
 
-    const isOutsideOfMonth  = !isSameMonth(currentMonth,)
+    const isOutsideOfMonth  = !isSameMonth(currentMonth,date);
+
+    const finallyDisabled =isDisabled || isUnavailable;
     return (
         <td {...cellProps} className={`py-0.5 px-0.5 relative ${isFocusVisible ? "z-10" : "z-0"}`}>
             <div {...mergeProps(buttonProps, focusProps)}
@@ -34,7 +36,7 @@ export function CalendarCell({
             hidden={isOutsideOfMonth}
             className="size-10 sm:size-12 outline-none group rounded-md"
             >
-                <div className={cn("size-full rounded-sm flex items-center justify-center text-center text-sm font-semibold",isDisabled? "text-muted-foreground cursor-not-allowed":"",  isSelected? "bg-primary text-white" :"", !isSelected && !isDisabled ?  'hover:bg-primary/10' :'')}>
+                <div className={cn("size-full rounded-sm flex items-center justify-center text-center text-sm font-semibold",finallyDisabled? "text-muted-foreground cursor-not-allowed":"",  isSelected? "bg-primary text-white" :"", !isSelected && !finallyDisabled ?  'hover:bg-primary/10' :'')}>
               {formattedDate}
               {isDateToday && (
                     <div className=" absolute bottom-3 left-1/2 transform-translate-x-1/2 translate-y-1/2 size-1.5 bg-primary rounded-full", isSelected && "bg-white"/>
