@@ -78,7 +78,7 @@ export default async function BookingFormRoute({params}:{params:{username:string
                     </div>
 
                     <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
-                    <RenderCalendar></RenderCalendar>
+                    <RenderCalendar availability={data.User?.availability as any}></RenderCalendar>
                 </CardContent>
             </Card>
         </div>
