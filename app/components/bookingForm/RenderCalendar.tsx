@@ -3,6 +3,13 @@
 import { Calendar } from "./Calendar"
 
 import {today,getLocalTimeZone} from "@internationalized/date"
-export function RenderCalendar(){
+
+interface iAppProps {
+    availability:{
+        day:string;
+        isActive:boolean;
+    }[];
+}
+export function RenderCalendar({availability}:iAppProps){
     return <Calendar minValue={today(getLocalTimeZone())}></Calendar>
 }
