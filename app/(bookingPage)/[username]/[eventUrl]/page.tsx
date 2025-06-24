@@ -91,7 +91,7 @@ export default async function BookingFormRoute({params,searchParams,}:{params:{u
                     <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
                     <RenderCalendar availability={data.User?.availability as any}></RenderCalendar>
                     <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
-                    <TimeTable ></TimeTable>
+                    <TimeTable selectedDate={selectedDate}></TimeTable>
                 </CardContent>
             </Card>
         </div>
