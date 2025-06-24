@@ -10,14 +10,16 @@ async function getData(userName:string){
             },
         },
         select :{
-            firstTime:true,
+            fromTime:true,
             tillTime:true,
             id:true,
             User:{
+              select:  {
                 grantEmail:true,
-                grant:true,
-            }
-        }
+                grantId:true,
+              },
+            },
+        },
     });
     return data;
 }
