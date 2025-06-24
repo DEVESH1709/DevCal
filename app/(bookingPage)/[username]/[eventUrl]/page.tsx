@@ -46,10 +46,20 @@ async function getData(eventUrl :string,userName:string){
 
 
 
-export default async function BookingFormRoute({params}:{params:{username:string,eventUrl:string}}){
+export default async function BookingFormRoute({params,searchParams,}:{params:{username:string,eventUrl:string}; searchParams:{date?:string}}){
 
     const data= await getData(params.eventUrl,params.username);
+    const selectedDate = searchParams.date? new Date(searchParams.date): new Date();
+
+  const formatteDate = new Intl.DateTimeFormat("en-US",{
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+
+  }).format(selectedDate);
+
     return (
+
         <div className="min-h-screen w-screen flex items-center justify-center">
             <Card className="max-w-[1000px] w-full mx-auto">
                 <CardContent className="p-5 md:grid-cols-[1fr,auto,1fr,auto,1fr]">
@@ -59,7 +69,7 @@ export default async function BookingFormRoute({params}:{params:{username:string
                     <p className="text-sm font-medium text-muted-foreground">{data.description}</p>
                    <div className="mt-5 flex flex-col gap-y-3">
                     <p className="flex items-center"><CalendarX2 className="size-4 mr-2 text-primary"></CalendarX2>
-                    <span className="text-sm font-medium text-muted-foreground">23. Sept 2024</span>
+                    <span className="text-sm font-medium text-muted-foreground">{formatteDate}</span>
                     
                     </p>
                    <p className="flex items-center"><Clock className="size-4 mr-2 text-primary"></Clock>
@@ -79,6 +89,7 @@ export default async function BookingFormRoute({params}:{params:{username:string
 
                     <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
                     <RenderCalendar availability={data.User?.availability as any}></RenderCalendar>
+                    <Separator orientation="vertical" className="h-full w-[1px]"></Separator>
                 </CardContent>
             </Card>
         </div>
